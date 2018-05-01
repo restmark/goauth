@@ -1,19 +1,19 @@
 package models
 
 import (
-	"strings"
-	"golang.org/x/crypto/bcrypt"
-	"net/http"
 	"github.com/asaskevich/govalidator"
 	"github.com/restmark/goauth/helpers"
+	"golang.org/x/crypto/bcrypt"
+	"net/http"
+	"strings"
 )
 
 type User struct {
-	Id            string       `json:"id" bson:"_id,omitempty" valid:"-"`
-	Firstname     string       `json:"first_name" bson:"first_name" valid:"required"`
-	Lastname      string       `json:"last_name" bson:"last_name" valid:"required"`
-	Password      string       `json:"password" bson:"password" valid:"required"`
-	Email         string       `json:"email" bson:"email" valid:"email,required"`
+	Id        string `json:"id" bson:"_id,omitempty" valid:"-"`
+	Firstname string `json:"first_name" bson:"first_name" valid:"required"`
+	Lastname  string `json:"last_name" bson:"last_name" valid:"required"`
+	Password  string `json:"password" bson:"password" valid:"required"`
+	Email     string `json:"email" bson:"email" valid:"email,required"`
 }
 
 type SanitizedUser struct {
@@ -22,7 +22,6 @@ type SanitizedUser struct {
 	Lastname  string `json:"lastname" bson:"lastname"`
 	Email     string `json:"email" bson:"email"`
 }
-
 
 func (user *User) BeforeCreate() error {
 	user.Email = strings.ToLower(user.Email)

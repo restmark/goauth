@@ -3,10 +3,10 @@ package mongodb
 import (
 	"net/http"
 
-	"gopkg.in/mgo.v2/bson"
-	"github.com/restmark/goauth/models"
 	"github.com/restmark/goauth/helpers"
 	"github.com/restmark/goauth/helpers/params"
+	"github.com/restmark/goauth/models"
+	"gopkg.in/mgo.v2/bson"
 )
 
 func (db *mongo) CreateUser(user *models.User) error {

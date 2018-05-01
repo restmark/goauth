@@ -1,11 +1,11 @@
 package server
 
 import (
-	"log"
+	"github.com/Shopify/sarama"
 	"github.com/bsm/sarama-cluster"
+	"log"
 	"os"
 	"os/signal"
-	"github.com/Shopify/sarama"
 )
 
 func (a *API) SetupConsumer() {

@@ -6,8 +6,8 @@ import (
 	"github.com/restmark/goauth/helpers"
 	"github.com/restmark/goauth/models"
 	"github.com/restmark/goauth/services"
-	"net/http"
 	"github.com/restmark/goauth/store"
+	"net/http"
 )
 
 type UserController struct {
@@ -45,4 +45,3 @@ func (uc UserController) GetUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, user.Sanitize())
 }
-

@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/restmark/goauth/models"
 	"encoding/json"
+	"github.com/restmark/goauth/models"
 	"github.com/restmark/goauth/store"
 )
 

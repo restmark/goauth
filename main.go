@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 	"github.com/restmark/goauth/server"
+	"github.com/spf13/viper"
 )
 
 func main() {
@@ -27,7 +27,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 
 	api.SetupTopicRouter()
 

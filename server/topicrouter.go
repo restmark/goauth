@@ -15,10 +15,10 @@ func (a *API) SetupTopicRouter() {
 	a.TopicRouter = topicRouter
 }
 
-type HandlerFunc func(store.Store, []byte)error //TODO: Replace *API with a context
+type HandlerFunc func(store.Store, []byte) error //TODO: Replace *API with a context
 
 type TopicRouter struct {
-	store store.Store
+	store    store.Store
 	topicMap map[string]HandlerFunc
 }
 
@@ -33,7 +33,7 @@ func (t *TopicRouter) AddHandler(topic string, handler HandlerFunc) {
 	t.topicMap[topic] = handler
 }
 
-func (t* TopicRouter) CallHandler(topic string, message []byte) error {
+func (t *TopicRouter) CallHandler(topic string, message []byte) error {
 	err := t.topicMap[topic](t.store, message)
 	if err != nil {
 		return err

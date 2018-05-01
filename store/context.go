@@ -1,8 +1,8 @@
 package store
 
 import (
-	"golang.org/x/net/context"
 	"github.com/restmark/goauth/models"
+	"golang.org/x/net/context"
 )
 
 const (

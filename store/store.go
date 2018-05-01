@@ -1,8 +1,8 @@
 package store
 
 import (
-	"github.com/restmark/goauth/models"
 	"github.com/restmark/goauth/helpers/params"
+	"github.com/restmark/goauth/models"
 )
 
 type Store interface {
