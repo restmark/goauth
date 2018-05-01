@@ -20,8 +20,8 @@ func TestUserController_CreateUser(t *testing.T) {
 	/* SETUP MOCK USER */
 	testUser := models.User{
 		Id:       "123",
-		Tenant:   "restmark",
-		Username: "maxence",
+		Firstname: "maxence",
+		Lastname: "henneron",
 		Email:    "maxence@restmark.co",
 	}
 
