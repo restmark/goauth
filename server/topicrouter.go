@@ -15,7 +15,7 @@ func (a *API) SetupTopicRouter() {
 	a.TopicRouter = topicRouter
 }
 
-type HandlerFunc func(store.Store, []byte) error //TODO: Replace *API with a context
+type HandlerFunc func(store.Store, []byte) error //TODO: Replace *store.Store with a context
 
 type TopicRouter struct {
 	store    store.Store
@@ -24,7 +24,7 @@ type TopicRouter struct {
 
 func NewTopicRouter(api *API) *TopicRouter {
 	return &TopicRouter{
-		mongodb.New(api.Database),
+		mongodb.New(api.Database), //TODO: Remove mongodb dependency and create store from configuration
 		make(map[string]HandlerFunc),
 	}
 }

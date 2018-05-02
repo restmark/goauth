@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	api := &server.API{Router: gin.Default(), Config: viper.New()}
+	api := &server.API{Router: gin.New(), Config: viper.New()}
 
 	// Configuration setup
 	err := api.SetupViper()
