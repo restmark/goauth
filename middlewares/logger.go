@@ -10,9 +10,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
 	"github.com/mattn/go-isatty"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -84,14 +84,6 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) gin.HandlerFunc {
 				path = path + "?" + raw
 			}
 
-			entry := logrus.WithFields(logrus.Fields{
-				"statusCode": statusCode,
-				"latency":    latency, // time to process
-				"clientIP":   clientIP,
-				"method":     c.Request.Method,
-				"path":       path,
-			})
-
 			msg := fmt.Sprintf("[GIN] %v |%s %3d %s| %13v | %15s |%s %-7s %s %s\n%s",
 				end.Format("2006/01/02 - 15:04:05"),
 				statusColor, statusCode, resetColor,
@@ -103,11 +95,11 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) gin.HandlerFunc {
 			)
 
 			if statusCode > 499 {
-				entry.Error(msg)
+				logrus.Error(msg)
 			} else if statusCode > 399 {
-				entry.Warn(msg)
+				logrus.Warn(msg)
 			} else {
-				entry.Info(msg)
+				logrus.Info(msg)
 			}
 		}
 	}
