@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 	"github.com/Shopify/sarama"
-	log "github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin/json"
+	log "github.com/sirupsen/logrus"
 )
 
 const KafkaKey = "kafka"

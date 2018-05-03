@@ -5,10 +5,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/json"
 	"github.com/magiconair/properties/assert"
-	"github.com/spf13/viper"
 	"github.com/restmark/goauth/middlewares"
 	"github.com/restmark/goauth/models"
 	"github.com/restmark/goauth/services"
+	"github.com/spf13/viper"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -19,10 +19,10 @@ func TestUserController_CreateUser(t *testing.T) {
 
 	/* SETUP MOCK USER */
 	testUser := models.User{
-		Id:       "123",
-		Tenant:   "restmark",
-		Username: "maxence",
-		Email:    "maxence@restmark.co",
+		Id:        "123",
+		Firstname: "maxence",
+		Lastname:  "henneron",
+		Email:     "maxence@restmark.co",
 	}
 
 	userJson, err := json.Marshal(testUser)

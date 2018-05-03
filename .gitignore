@@ -1,6 +1,7 @@
 .env
 .env.prod
 .idea
+goauth
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
