@@ -18,8 +18,8 @@ type User struct {
 
 type SanitizedUser struct {
 	Id        string `json:"id" bson:"_id,omitempty"`
-	Firstname string `json:"firstname" bson:"firstname"`
-	Lastname  string `json:"lastname" bson:"lastname"`
+	Firstname string `json:"first_name" bson:"first_name"`
+	Lastname  string `json:"last_name" bson:"last_name"`
 	Email     string `json:"email" bson:"email"`
 }
 
