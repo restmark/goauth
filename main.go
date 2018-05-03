@@ -15,6 +15,8 @@ func main() {
 		panic(err)
 	}
 
+	api.SetupLogger()
+
 	// Database setup
 	session, err := api.SetupDatabase()
 	if err != nil {
