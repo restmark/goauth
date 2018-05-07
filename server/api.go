@@ -8,9 +8,8 @@ import (
 )
 
 type API struct {
-	Router      *gin.Engine
-	Config      *viper.Viper
-	Kafka       services.KafkaInterface
-	Database    *mgo.Database
-	TopicRouter *TopicRouter
+	Router   *gin.Engine
+	Config   *viper.Viper
+	Kafka    services.KafkaInterface
+	Database *mgo.Database
 }

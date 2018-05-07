@@ -26,6 +26,12 @@ func (u *UserController) CreateUser(c *gin.Context) {
 		return
 	}
 
+	if err := store.CreateUser(c, &user); err != nil {
+		c.Error(err)
+		c.Abort()
+		return
+	}
+
 	err = services.GetKafka(c).SendValue(user, config.GetString(c, "kafka_topic"))
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, helpers.ErrorWithCode("kafka_error", "Failed to send the data to Kafka "+err.Error()))

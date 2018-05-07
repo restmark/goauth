@@ -84,22 +84,23 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) gin.HandlerFunc {
 				path = path + "?" + raw
 			}
 
-			msg := fmt.Sprintf("[GIN] %v |%s %3d %s| %13v | %15s |%s %-7s %s %s\n%s",
+			msg := fmt.Sprintf("[GIN] %v |%s %3d %s| %13v | %15s |%s %-7s %s %s",
 				end.Format("2006/01/02 - 15:04:05"),
 				statusColor, statusCode, resetColor,
 				latency,
 				clientIP,
 				methodColor, method, resetColor,
 				path,
-				comment,
 			)
 
+			logger := logrus.WithField("error", comment)
+
 			if statusCode > 499 {
-				logrus.Error(msg)
+				logger.Error(msg)
 			} else if statusCode > 399 {
-				logrus.Warn(msg)
+				logger.Warn(msg)
 			} else {
-				logrus.Info(msg)
+				logger.Info(msg)
 			}
 		}
 	}

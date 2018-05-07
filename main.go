@@ -30,11 +30,6 @@ func main() {
 		panic(err)
 	}
 
-	api.SetupTopicRouter()
-
-	// Consumer setup
-	go api.SetupConsumer()
-
 	// Router setup
 	api.SetupRouter()
 	api.Router.Run(api.Config.GetString("host_address"))

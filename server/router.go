@@ -15,6 +15,7 @@ func (a *API) SetupRouter() {
 	router.Use(middlewares.ErrorMiddleware())
 	router.Use(middlewares.ConfigMiddleware(a.Config))
 	router.Use(middlewares.KafkaMiddleware(a.Kafka))
+	router.Use(middlewares.StoreMiddleware(a.Database))
 
 	v1 := router.Group("/v1")
 	{
@@ -25,6 +26,12 @@ func (a *API) SetupRouter() {
 		{
 			userController := controllers.NewUserController()
 			users.POST("/", userController.CreateUser)
+		}
+
+		authentication := v1.Group("/auth")
+		{
+			authController := controllers.NewAuthController()
+			authentication.POST("/", authController.Authentication)
 		}
 	}
 }
