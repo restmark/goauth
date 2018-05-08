@@ -22,7 +22,7 @@ func (a *API) SetupRouter() {
 		statusController := controllers.NewStatusController()
 		v1.GET("/", statusController.GetApiStatus)
 
-		users := v1.Group("/user")
+		users := v1.Group("/users")
 		{
 			userController := controllers.NewUserController()
 			users.POST("/", userController.CreateUser)
