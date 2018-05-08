@@ -3,9 +3,9 @@ package middlewares
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/restmark/goauth/store"
+	"github.com/restmark/goauth/store/mock"
 	"github.com/restmark/goauth/store/mongodb"
 	mgo "gopkg.in/mgo.v2"
-	"github.com/restmark/goauth/store/mock"
 )
 
 func StoreMiddleware(db *mgo.Database) gin.HandlerFunc {
