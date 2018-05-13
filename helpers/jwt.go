@@ -72,7 +72,7 @@ func ValidateJwtToken(token string, encodedKey []byte, audience string) (jwt.Map
 	publicKey := privateKey.PublicKey
 
 	rawToken, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
-		return publicKey, nil
+		return &publicKey, nil
 	})
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func ValidateJwtToken(token string, encodedKey []byte, audience string) (jwt.Map
 	}
 
 	//validate exp
-	tokenExp := claims["exp"].(int64)
-	if tokenExp < time.Now().Unix() {
+	tokenExp := claims["exp"].(float64)
+	if tokenExp < float64(time.Now().Unix()) {
 		return nil, errors.New("token in invalid (expired)")
 	}
 
