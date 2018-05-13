@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/restmark/goauth/services"
 	"github.com/spf13/viper"
-	"gopkg.in/mgo.v2"
+	"github.com/globalsign/mgo"
 )
 
 type API struct {

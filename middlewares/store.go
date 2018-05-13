@@ -5,7 +5,7 @@ import (
 	"github.com/restmark/goauth/store"
 	"github.com/restmark/goauth/store/mock"
 	"github.com/restmark/goauth/store/mongodb"
-	mgo "gopkg.in/mgo.v2"
+	mgo "github.com/globalsign/mgo"
 )
 
 func StoreMiddleware(db *mgo.Database) gin.HandlerFunc {

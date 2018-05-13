@@ -1,6 +1,6 @@
 package mongodb
 
-import "gopkg.in/mgo.v2"
+import "github.com/globalsign/mgo"
 
 type mongo struct {
 	*mgo.Database
