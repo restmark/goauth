@@ -32,6 +32,7 @@ func (a *API) SetupRouter() {
 		{
 			authController := controllers.NewAuthController()
 			authentication.POST("/", authController.Authentication)
+			authentication.GET("/cert", authController.GetJWKS)
 		}
 	}
 }

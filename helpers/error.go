@@ -17,12 +17,12 @@ func (e Error) ErrorTrace() error {
 	return e.Trace
 }
 
-func ErrorWithCode(code string, message string) Error {
-	return Error{Code: code, Message: message}
+func ErrorWithCode(code string, message string, trace error) Error {
+	return Error{Code: code, Message: message, Trace: trace}
 }
 
-func NewError(httpCode int, code string, message string) Error {
-	return Error{Code: code, Message: message, HttpCode: httpCode}
+func NewError(httpCode int, code string, message string, trace error) Error {
+	return Error{Code: code, Message: message, HttpCode: httpCode, Trace: trace}
 }
 
 func NewErrorWithTrace(httpCode int, code string, message string, trace error) Error {

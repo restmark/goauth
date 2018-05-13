@@ -22,7 +22,7 @@ func (u *UserController) CreateUser(c *gin.Context) {
 
 	err := c.BindJSON(&user)
 	if err != nil {
-		c.AbortWithError(http.StatusBadRequest, helpers.ErrorWithCode("invalid_input", "Failed to bind the body data"))
+		c.AbortWithError(http.StatusBadRequest, helpers.ErrorWithCode("invalid_input", "Failed to bind the body data", err))
 		return
 	}
 
@@ -34,7 +34,7 @@ func (u *UserController) CreateUser(c *gin.Context) {
 
 	err = services.GetKafka(c).SendValue(user, config.GetString(c, "kafka_topic"))
 	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, helpers.ErrorWithCode("kafka_error", "Failed to send the data to Kafka "+err.Error()))
+		c.AbortWithError(http.StatusInternalServerError, helpers.ErrorWithCode("kafka_error", "Failed to send the data to Kafka", err))
 		return
 	}
 
@@ -45,7 +45,7 @@ func (uc UserController) GetUser(c *gin.Context) {
 	user, err := store.FindUserById(c, c.Param("id"))
 
 	if err != nil {
-		c.AbortWithError(http.StatusNotFound, helpers.ErrorWithCode("user_not_found", "The user does not exist"))
+		c.AbortWithError(http.StatusNotFound, helpers.ErrorWithCode("user_not_found", "The user does not exist", err))
 		return
 	}
 
