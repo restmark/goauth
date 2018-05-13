@@ -46,6 +46,8 @@ func TestUserController_CreateUser(t *testing.T) {
 	r := gin.Default()
 	r.Use(middlewares.ConfigMiddleware(viper.GetViper()))
 	r.Use(middlewares.KafkaMiddleware(&services.KafkaMock{}))
+	r.Use(middlewares.StoreMockMiddleware())
+
 	r.POST("/", userController.CreateUser)
 
 	/* CREATE POST REQUEST */

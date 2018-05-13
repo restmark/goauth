@@ -12,6 +12,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/mattn/go-isatty"
+	"github.com/restmark/goauth/helpers"
 	"github.com/sirupsen/logrus"
 )
 
@@ -78,28 +79,43 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) gin.HandlerFunc {
 				methodColor = colorForMethod(method)
 				resetColor = reset
 			}
-			comment := c.Errors.ByType(gin.ErrorTypePrivate).String()
+
+			errors := c.Errors.ByType(gin.ErrorTypePrivate)
+			comment := errors.String()
+
+			trace := ""
+			errorToPrint := c.Errors.Last()
+			if errorToPrint != nil {
+				original, ok := errorToPrint.Err.(helpers.Error)
+				if ok && original.Trace != nil {
+					trace = original.Trace.Error()
+				}
+			}
 
 			if raw != "" {
 				path = path + "?" + raw
 			}
 
-			msg := fmt.Sprintf("[GIN] %v |%s %3d %s| %13v | %15s |%s %-7s %s %s\n%s",
-				end.Format("2006/01/02 - 15:04:05"),
+			msg := fmt.Sprintf("[GIN] %v |%s %3d %s| %13v | %15s |%s %-7s %s %s",
+				end.Format("2006/01/02 - 15+04:05"),
 				statusColor, statusCode, resetColor,
 				latency,
 				clientIP,
 				methodColor, method, resetColor,
 				path,
-				comment,
 			)
 
+			logger := logrus.WithFields(logrus.Fields{
+				"error": comment,
+				"trace": trace,
+			})
+
 			if statusCode > 499 {
-				logrus.Error(msg)
+				logger.Error(msg)
 			} else if statusCode > 399 {
-				logrus.Warn(msg)
+				logger.Warn(msg)
 			} else {
-				logrus.Info(msg)
+				logger.Info(msg)
 			}
 		}
 	}
