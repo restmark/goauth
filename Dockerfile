@@ -4,6 +4,9 @@ FROM        golang:1.8
 WORKDIR     /go/src/github.com/restmark/goauth
 ADD         . /go/src/github.com/restmark/goauth
 
+RUN apt-get update && apt-get install -y \
+    libsasl2-dev
+
 # Install the dependencies
 RUN go get -t -v ./...
 

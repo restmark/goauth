@@ -87,7 +87,7 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) gin.HandlerFunc {
 			errorToPrint := c.Errors.Last()
 			if errorToPrint != nil {
 				original, ok := errorToPrint.Err.(helpers.Error)
-				if ok {
+				if ok && original.Trace != nil {
 					trace = original.Trace.Error()
 				}
 			}

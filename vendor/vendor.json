@@ -3,10 +3,6 @@
 	"ignore": "test",
 	"package": [
 		{
-			"path": "all",
-			"revision": ""
-		},
-		{
 			"checksumSHA1": "gpiAW8phPmLJ6gcmu48ersHhqzQ=",
 			"path": "github.com/Shopify/sarama",
 			"revision": "8da9fa72b86689a02355dca1182444cca607e054",
